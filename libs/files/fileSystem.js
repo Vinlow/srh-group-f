@@ -8,7 +8,7 @@ var fs = require('fs');
  *
  * @param filePath: string
  * 
- * @return void
+ * @return boolean
  */
 exports.checkFileExists = function (filePath) {
     try {
@@ -16,5 +16,29 @@ exports.checkFileExists = function (filePath) {
     }
     catch (err) {
         return false;
+    }
+}
+
+/**
+ * Writes a specific file
+ * 
+ * @param filePath: string
+ * @param fileData: string
+ * 
+ * 
+ * @return boolean
+ */
+exports.writeFile = function (filePath, fileData, callback) {
+    if (callback == null) {
+        fs.writeFileSync(filePath, fileData);
+    }
+    else {
+        fs.writeFile(filePath, fileData, function (err) {
+            if (err) {
+                console.log(err);
+                callback(false);
+            }
+            callback(true);
+        });
     }
 }

