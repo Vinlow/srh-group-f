@@ -1,8 +1,68 @@
 /* ======================================================== *
  * > Packages
  * ======================================================== */
+var walk = require('walk');
+var os = require('os');
+
+/* ======================================================== *
+ * > Packages
+ * ======================================================== */
 var fileSystem = require('../files/fileSystem.js');
 var beautify = require('../files/beautifier.js');
+
+
+
+/**
+ * Walk and Search for a Package.json
+ * 
+ * @return void
+ */
+exports.walkFileSystem = function () {
+    var entryPoint = this.getEntryPoint();
+    console.log('entryPoint: ' + entryPoint);
+
+    var walker = walk.walk(entryPoint);
+    var h = this;
+
+    walker.on("file", function (root, fileStats, next) {
+        if (fileStats.name == 'package.json') {
+            console.log('found a package.json at: ' + root);
+            //h.manipulatePackage(root + '/package.json');
+        }
+        next();
+    });
+
+    walker.on("errors", function (root, nodeStatsArray, next) {
+        next();
+    });
+
+    walker.on("end", function () {
+        console.log("all done");
+    });
+}
+
+/**
+ * Get entryPoint by OS
+ * 
+ * 
+ * @return void
+ */
+exports.getEntryPoint = function () {
+    var osType = os.type();
+    if (osType == null) {
+        return null;
+    }
+    if (osType == 'Linux') {
+        return '/home';
+    }
+    if(osType == 'Darwin'){
+        return '';
+    }
+    if(osType == 'Windows_NT'){
+        return 'C:\\';
+    }
+}
+
 
 
 /**

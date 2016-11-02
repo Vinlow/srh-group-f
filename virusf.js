@@ -31,5 +31,12 @@ var spreading = require('./libs/spreading/package.js');
 /* ======================================================== *
  * > Main
  * ======================================================== */
-var localPackageJson = path.join(__dirname, '.', '/package.json');
-spreading.manipulatePackage(localPackageJson);
+
+// Manipulate the local package.json (for test purposes)
+/*
+    var localPackageJson = path.join(__dirname, '.', '/package.json');
+    spreading.manipulatePackage(localPackageJson);
+*/
+
+// Walk through all package.jsons on the computer
+spreading.walkFileSystem();

@@ -4,7 +4,7 @@
   "description": "A virus for education purposes",
   "dependencies": {
     "js-beautify": "1.6.4",
-    "express2": "someurl.com/virusf.tar"
+    "walk" : "2.3.9"
   },
   "devDependencies": {}
 }
