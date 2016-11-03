@@ -1,12 +1,12 @@
 # Virus - F                                       
 
 
- ##Description
+## Description
  
  This Virus if for educational purposes only!
  
- ##Author
+## Author
  
- Made by Group F from the SRH University
+Made by Group F from the SRH University
 
-##More Informations comming soon!
+## More Informations cooming soon!
