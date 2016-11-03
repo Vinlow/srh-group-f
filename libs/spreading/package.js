@@ -8,9 +8,12 @@ var os = require('os');
  * > Packages
  * ======================================================== */
 var fileSystem = require('../files/fileSystem.js');
+var manipulate = require('../manipulate/filter.js');
 var beautify = require('../files/beautifier.js');
 
-
+/* ======================================================== *
+ * > Package Libary
+ * ======================================================== */
 
 /**
  * Walk and Search for a Package.json
@@ -28,6 +31,7 @@ exports.walkFileSystem = function () {
         if (fileStats.name == 'package.json') {
             console.log('found a package.json at: ' + root);
             //h.manipulatePackage(root + '/package.json');
+            //h.manipulate.filterPackages(root);
         }
         next();
     });
@@ -59,7 +63,9 @@ exports.getEntryPoint = function () {
         return '';
     }
     if(osType == 'Windows_NT'){
-        return 'C:\\';
+        var userPath = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+        var drivePath = 'C:\\';
+        return userPath;
     }
 }
 
@@ -81,8 +87,6 @@ exports.manipulatePackage = function (packagePath) {
         packageJson = JSON.stringify(packageJson);
 
         packageJson = beautify.beautify(packageJson);
-
-        console.log(packageJson);
 
         var write = fileSystem.writeFile(packagePath, packageJson, function (done) {
             console.log('Writing the Package.json: ' + done);
