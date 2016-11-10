@@ -15,11 +15,14 @@ exports.filterPackages = function (filePath) {
     var hasExpress = this.hasExpress(packageJson);
 
     // Found itself
-    if(filePath == process.cwd()){
-        return false;
-    } 
 
-    if(hasExpress){
+    if (filePath == process.cwd()) {
+        return false;
+    }
+
+    if (hasExpress) {
+        console.log(filePath);
+        console.log(process.cwd());
         return true;
     }
     return false;
