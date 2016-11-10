@@ -13,6 +13,12 @@
 exports.filterPackages = function (filePath) {
     var packageJson = require(filePath + '/package.json');
     var hasExpress = this.hasExpress(packageJson);
+
+    // Found itself
+    if(filePath == process.cwd()){
+        return false;
+    } 
+
     if(hasExpress){
         return true;
     }
