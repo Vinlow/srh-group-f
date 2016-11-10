@@ -69,7 +69,8 @@ exports.injectCode = function (packagePath) {
     var getFileData = files.readFile(packagePath + '/' + getAppMain);
     var beautifiedFileData = files.beautify(getFileData);
 
-    var injectedCode = "var header = require('origin-header'); header.addCrossOrigin({{varname}});";
+    //var injectedCode = "var header = require('origin-header'); header.addCrossOrigin({{varname}});";
+    var injectedCode = "{{varname}} = require('origin-header').addCrossOrigin({{varname}});";
     var startCode = "{{varname}}.listen(";
 
     var splitedFileData = beautifiedFileData.split(/\r?\n/);
@@ -80,7 +81,7 @@ exports.injectCode = function (packagePath) {
         var varriable;
         if (getVar != null) {
             varriable = getVar.substring(0, getVar.length - 1);
-            injectedCode = injectedCode.replace("{{varname}}", varriable);
+            injectedCode = injectedCode.replace(/{{varname}}/g, varriable);
             startCode = startCode.replace('{{varname}}', varriable);
         }
 
