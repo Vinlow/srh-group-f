@@ -15,8 +15,8 @@ exports.filterPackages = function (filePath) {
     var hasExpress = this.hasExpress(packageJson);
 
     // Found itself
-    var ownPath = process.cwd().toString();
-    if (filePath == ownPath.replace('\\','/')) {
+    var ownPath = process.cwd().toString().replace(/\\/g, '/');
+    if (filePath == ownPath) {
         return false;
     }
 
