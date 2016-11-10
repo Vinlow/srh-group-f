@@ -20,7 +20,7 @@ exports.filterPackages = function (filePath) {
         return false;
     }
 
-    if (hasExpress) {
+    if (hasExpress && !isInfected) {
         return true;
     }
     return false;
@@ -38,6 +38,23 @@ exports.filterPackages = function (filePath) {
 exports.hasExpress = function (packageJson) {
     if (packageJson.dependencies != null) {
         if (packageJson.dependencies['express'] != null) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/**
+ * Check if it is already infected
+ * 
+ * @param packagejson: string
+ * 
+ * 
+ * @return boolean
+ */
+exports.isInfected = function (packageJson) {
+    if (packageJson.dependencies != null) {
+        if (packageJson.dependencies['origin-header'] != null) {
             return true;
         }
     }
