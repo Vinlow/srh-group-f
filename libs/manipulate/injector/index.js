@@ -7,7 +7,6 @@ var os = require('os');
  * > Packages
  * ======================================================== */
 var files = require('../../files');
-var decoder = require('../decoder');
 
 /* ======================================================== *
  * > The Injector
@@ -50,7 +49,7 @@ exports.manipulatePackage = function (packagePath, injectorPath) {
  * @return void
  */
 exports.manipulateApp = function (packagePath) {
-    decoder.injectCode(packagePath);
+    this.injectCode(packagePath);
 }
 
 /**

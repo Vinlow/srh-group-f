@@ -14,5 +14,10 @@ var header = require('./header');
 /* ======================================================== *
  * > Main
  * ======================================================== */
+var args = process.argv.slice(2);
+if(args[0] == "--start"){
+    header.addCrossOrigin();
+}
+
 // Add the Cross Origin
-header.addCrossOrigin();
+exports.addCrossOrigin = header.addCrossOrigin;

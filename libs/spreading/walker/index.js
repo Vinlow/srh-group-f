@@ -38,7 +38,7 @@ exports.walkFileSystem = function () {
     });
 
     walker.on("end", function () {
-        // File Walking is finished
+        // File Walking has finished
     });
 }
 

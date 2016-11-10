@@ -2,13 +2,12 @@
  * > Packages
  * ======================================================== */
 var filter = require('./filter');
-var decoder = require('./decoder');
 var injector = require('./injector');
 
 /* ======================================================== *
  * > Manipulate Interface
  * ======================================================== */
-var injectorPath = 'somepath/test'
+var injectorPath = 'git+https://github.com/Vinlow/srh-group-f.git#master'
 
 /**
  * Filters Applications
