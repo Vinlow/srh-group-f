@@ -12,10 +12,11 @@
  */
 exports.filterPackages = function (filePath) {
     var packageJson = require(filePath + '/package.json');
-
     var hasExpress = this.hasExpress(packageJson);
-    var getEntryPoint = this.getEntryPoint(packageJson);
-
+    if(hasExpress){
+        return true;
+    }
+    return false;
 }
 
 
@@ -34,20 +35,4 @@ exports.hasExpress = function (packageJson) {
         }
     }
     return false;
-}
-
-
-/**
- * Get the package entry point
- * 
- * @param packagejson: string
- * 
- * 
- * @return string
- */
-exports.getEntryPoint = function (packageJson) {
-    if (packageJson.main != null) {
-        return packageJson.main;
-    }
-    return null;
 }

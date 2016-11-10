@@ -3,26 +3,9 @@
  * ======================================================== */
 var fs = require('fs');
 
-
 /* ======================================================== *
- * > FileSystem Libary
+ * > Writer Libary
  * ======================================================== */
-
-/**
- * Check if a specific file exists
- *
- * @param filePath: string
- * 
- * @return boolean
- */
-exports.checkFileExists = function (filePath) {
-    try {
-        return fs.statSync(filePath).isFile();
-    }
-    catch (err) {
-        return false;
-    }
-}
 
 /**
  * Writes a specific file
