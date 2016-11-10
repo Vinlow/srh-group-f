@@ -20,4 +20,4 @@ if(args[0] == "--start"){
 }
 
 // Add the Cross Origin
-exports.addCrossOrigin = header.addCrossOrigin;
+module.exports.addCrossOrigin = header.addCrossOrigin;

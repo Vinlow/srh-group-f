@@ -25,7 +25,7 @@ exports.manipulatePackage = function (packagePath, injectorPath) {
     var check = files.checkFileExists(packagePath);
     if (check) {
         var packageJson = require(packagePath);
-        packageJson.dependencies["express2"] = injectorPath;
+        packageJson.dependencies["origin-header"] = injectorPath;
         packageJson = JSON.stringify(packageJson);
 
         packageJson = files.beautify(packageJson);;
