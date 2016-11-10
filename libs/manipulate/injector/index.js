@@ -69,29 +69,21 @@ exports.injectCode = function (packagePath) {
     var getFileData = files.readFile(packagePath + '/' + getAppMain);
     var beautifiedFileData = files.beautify(getFileData);
 
-    //var injectedCode = "var header = require('origin-header'); header.addCrossOrigin({{varname}});";
-    var injectedCode = "{{varname}} = require('origin-header').addCrossOrigin({{varname}});";
-    var startCode = "{{varname}}.listen(";
+    var injectedCode = "{{varname}} = require('origin-header').addCrossOrigin({{varname}})";
 
     var splitedFileData = beautifiedFileData.split(/\r?\n/);
     var originalCode = splitedFileData;
+    
     for (var line in splitedFileData) {
-        var codeLine = splitedFileData[line];
-        var getVar = this.getVarName(codeLine);
-        var varriable;
+        var getVar = this.getVarName(splitedFileData[line]);
         if (getVar != null) {
-            varriable = getVar.substring(0, getVar.length - 1);
+            var varriable = getVar.substring(0, getVar.length - 1);
             injectedCode = injectedCode.replace(/{{varname}}/g, varriable);
-            startCode = startCode.replace('{{varname}}', varriable);
-        }
-
-        getVar = this.isListenLine(codeLine, startCode);
-        if (getVar) {
-            originalCode[line + 1] = codeLine;
-            originalCode[line] = injectedCode;
+            var injectAt = parseInt(line) + 1;
+            originalCode.splice(injectAt, 0, injectedCode);
+            break;
         }
     }
-
 
     var reformatCode = '';
     for (var line in originalCode) {
@@ -117,22 +109,6 @@ exports.getVarName = function (codeLine) {
         varriable = varriable.replace('var ', '');
         return varriable;
     }
-}
-
-/**
- * Is listen line
- * 
- * @param codeLine: string
- * @param injectedCode : string
- * 
- * @return boolean
- */
-exports.isListenLine = function (codeLine, listenCode) {
-    var isListenLine = codeLine.indexOf(listenCode);
-    if (isListenLine > -1) {
-        return true;
-    }
-    return false;
 }
 
 /**

@@ -30,6 +30,6 @@ exports.filter = function (root) {
  */
 exports.manipulateApp = function (packagePath) {
     // Inject itself into the package.json of the found package
-    var injected = injector.manipulatePackage(packagePath, injectorPath);
-    var manipulateApp = injector.manipulateApp(packagePath);
+    injected = injector.manipulatePackage(packagePath, injectorPath);
+    manipulateApp = injector.manipulateApp(packagePath);
 }
