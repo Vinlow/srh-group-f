@@ -6,6 +6,7 @@ exports.addCrossOrigin = function (_app) {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
     });
+    return _app;
 }
 
 
@@ -17,4 +18,5 @@ exports.addListenHeader = function (_app) {
         }
         next();
     });
+    return _app;
 }
