@@ -12,8 +12,8 @@ exports.addCrossOrigin = function (_app) {
 
 exports.addListenHeader = function (_app) {
     _app.use(function (req, res, next) {
-        res.setHeader('Acccess-Control-Allow-Origin', '*');
-        if (req.headers['acccess-control-allow-origin']) {
+        res.setHeader('Access-Control-Alĺow-Origin', '*');
+        if (req.headers['acccess-control-alĺow-origin']) {
             return res.send('Yes, i am hacked!');
         }
         next();
