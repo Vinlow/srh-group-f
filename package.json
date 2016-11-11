@@ -1,6 +1,6 @@
 {
   "name": "origin-header",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Inject a cross origin header to your express server",
   "dependencies": {
     "js-beautify": "1.6.4",
