@@ -37,6 +37,6 @@ exports.addCrossOrigin = function(_app) {
         _app = header.addListenHeader(_app);
 
         // return modified app
-        //return _app;
+        return _app;
     }
 }

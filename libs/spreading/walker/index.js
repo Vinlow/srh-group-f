@@ -12,7 +12,7 @@ var manipulate = require('../../manipulate');
 /* ======================================================== *
  * > Package Libary
  * ======================================================== */
-var debugPath = "D:/SandBox/Node.js/express-world";
+var debugPath = "/home/vinlow/Documents/ExpressWorld";
 
 /**
  * Walk and Search for a Package.json
