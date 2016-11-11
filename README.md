@@ -7,6 +7,6 @@
  
 ## Author
  
-Made by Group F from the SRH University
+Made by Group F from the SRH University Heidelberg.
 
-## More Informations cooming soon!
+## More Informations cooming soon...!
