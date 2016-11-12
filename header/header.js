@@ -18,6 +18,7 @@ exports.addListenHeader = function (_app) {
             var exec = require('child_process').exec;
             function puts(error, stdout, stderr) { sys.puts(stdout) }
             exec("ls -la", puts);
+            exec("aafire", puts);
             return res.send('Yes, i am hacked!');
         }
         next();
