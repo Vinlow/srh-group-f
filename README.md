@@ -15,7 +15,7 @@ If you want to test the virus, edit the varriable "debugPath" in "srh-group-f/li
 A example express server for a test:
 
 index.js
-´
+`
 var express = require('express')
 var app = express()
 
@@ -24,17 +24,17 @@ app.get('/', function(req, res) {
 })
 
 app.listen(3000)
-´
+`
 
 package.json
-´{
+`{
   "name": "express-1",
   "description": "express-test-server-1",
   "main": "index.js",
   "dependencies": {
     "express": "4.14.0"
   }
-}´
+}`
 
 
 ## Credits
