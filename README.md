@@ -26,6 +26,10 @@ A example express server for a test:
   }
 }`
 
+## Documentation
+A generated documentation on the Github.io Page:
+https://vinlow.github.io/srh-group-f/
+
 
 ## Credits
 The idea of making a node.js based virus is based on a proof of concept by Matthias Gattermeier:
